@@ -197,6 +197,8 @@ impl<'a, const M: usize, const N: usize> Pencil<'a, M, N> {
 }
 
 /// Transpose between pencils
+///
+/// See for example [`pencil_decomp::decomp3::transpose_x_to_y`]
 pub(crate) fn transpose<S, R, T, Split, Merge, const M: usize, const N: usize>(
     send_pencil: &Pencil<M, N>,
     recv_pencil: &Pencil<M, N>,
