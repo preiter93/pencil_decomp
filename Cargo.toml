@@ -1,0 +1,17 @@
+[package]
+name = "pencil_decomp"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num-traits = "0.2"
+mpi = { package="mpi-fork-fnsp", version = "0.6" }
+ndarray = "0.15"
+
+[dev-dependencies]
+ndarray = "0.15"
+
+[features]
+derive = ["mpi/derive"]
