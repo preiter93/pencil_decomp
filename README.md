@@ -7,5 +7,4 @@
 <img src="https://github.com/preiter93/pencil_decomp/blob/master/pics/pencil2.png?raw=true" width="500"></img>
 </div>
 
-
 Work in progress...

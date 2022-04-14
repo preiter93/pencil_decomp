@@ -1,7 +1,9 @@
 //! # `pencil_decomp`: Library for MPI pencil distributions
 //!
 //! ## Documentation
-//! <img align="center" src="https://github.com/preiter93/pencil_decomp/tree/master/pics/pencil2.png" width="200">
+//! <div align="left">
+//! <img src="https://github.com/preiter93/pencil_decomp/blob/master/pics/pencil2.png?raw=true" width="500"></img>
+//! </div>
 //!
 //! Work in progress...
 #![warn(clippy::pedantic)]
