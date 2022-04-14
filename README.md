@@ -4,7 +4,8 @@
 
 ### Documentation
 
-<img align="left" src="https://github.com/preiter93/pencil_decomp/blob/master/pics/pencil2.png?raw=true" width="300"> <br /> <br />
+<img align="left" src="https://github.com/preiter93/pencil_decomp/blob/master/pics/pencil2.png?raw=true" width="300">
+<br /> <br /> <br /> <br />
 
 ### Notes
 Work in progress...
