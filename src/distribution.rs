@@ -1,10 +1,8 @@
 //! # Data distribution
 //!
 //! Store size and first and last index of current processor and
-//! of all participating processors.
-//!
-//! Furthermore, `Distribution` has functions returning counts,
-//! displs for different mpi routines
+//! of all participating processors along a single, possibly
+//! split, dimension.
 #![allow(clippy::similar_names)]
 
 /// Distribute Grid points to processors.

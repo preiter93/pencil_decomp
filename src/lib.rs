@@ -12,9 +12,9 @@
 #[macro_use]
 mod internal_macros;
 
-pub mod dist;
-pub mod global;
+pub mod distribution;
 pub mod pencil;
+pub mod simple_comms;
 pub use pencil::Pencil;
 pub mod decomp3;
 pub use decomp3::Decomp3;

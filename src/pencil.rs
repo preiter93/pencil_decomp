@@ -1,5 +1,5 @@
 //! # Pencil distributed data
-use crate::dist::Distribution;
+use crate::distribution::Distribution;
 use mpi::topology::Communicator;
 use mpi::{
     collective::CommunicatorCollectives, collective::Root, datatype::Partition,
