@@ -4,16 +4,17 @@ use mpi::{environment::Universe, traits::Equivalence};
 use ndarray::{ArrayBase, Data, DataMut, Ix3};
 use num_traits::Zero;
 
+/// Pencil decomposition in three dimensions
 pub struct Decomp3<'a> {
     /// Mpi universe
     pub universe: &'a Universe,
     /// Total number of grid points [nx global, ny global, nz_global]
     pub n_global: [usize; 3],
-    // Size, indices, counts and displacements for x-pencil
+    /// Size, indices, counts and displacements for x-pencil
     pub x_pencil: Pencil<'a, 3, 2>,
-    // Size, indices, counts and displacements for y-pencil
+    /// Size, indices, counts and displacements for y-pencil
     pub y_pencil: Pencil<'a, 3, 2>,
-    // Size, indices, counts and displacements for z-pencil
+    /// Size, indices, counts and displacements for z-pencil
     pub z_pencil: Pencil<'a, 3, 2>,
 }
 
@@ -60,8 +61,8 @@ impl<'a> Decomp3<'a> {
         S2: DataMut<Elem = T>,
         T: Zero + Clone + Copy + Equivalence,
     {
-        check_shape(snd, self.x_pencil.shape());
-        check_shape(rcv, self.y_pencil.shape());
+        assert_eq_shape!(snd, self.x_pencil, "transpose_x_to_y");
+        assert_eq_shape!(rcv, self.y_pencil, "transpose_x_to_y");
         transpose(&self.x_pencil, &self.y_pencil, snd, rcv, split_xy, merge_xy);
     }
 
@@ -78,8 +79,8 @@ impl<'a> Decomp3<'a> {
         S2: DataMut<Elem = T>,
         T: Zero + Clone + Copy + Equivalence,
     {
-        check_shape(snd, self.y_pencil.shape());
-        check_shape(rcv, self.x_pencil.shape());
+        assert_eq_shape!(snd, self.y_pencil, "transpose_y_to_x");
+        assert_eq_shape!(rcv, self.x_pencil, "transpose_y_to_x");
         transpose(&self.y_pencil, &self.x_pencil, snd, rcv, split_yx, merge_yx);
     }
 
@@ -96,8 +97,8 @@ impl<'a> Decomp3<'a> {
         S2: DataMut<Elem = T>,
         T: Zero + Clone + Copy + Equivalence,
     {
-        check_shape(snd, self.y_pencil.shape());
-        check_shape(rcv, self.z_pencil.shape());
+        assert_eq_shape!(snd, self.y_pencil, "transpose_y_to_z");
+        assert_eq_shape!(rcv, self.z_pencil, "transpose_y_to_z");
         transpose(&self.y_pencil, &self.z_pencil, snd, rcv, split_yz, merge_yz);
     }
 
@@ -114,8 +115,8 @@ impl<'a> Decomp3<'a> {
         S2: DataMut<Elem = T>,
         T: Zero + Clone + Copy + Equivalence,
     {
-        check_shape(snd, self.z_pencil.shape());
-        check_shape(rcv, self.y_pencil.shape());
+        assert_eq_shape!(snd, self.z_pencil, "transpose_z_to_y");
+        assert_eq_shape!(rcv, self.y_pencil, "transpose_z_to_y");
         transpose(&self.z_pencil, &self.y_pencil, snd, rcv, split_zy, merge_zy);
     }
 }
@@ -316,21 +317,4 @@ fn merge_zy<S, T>(
             }
         }
     }
-}
-
-/// # Panics
-/// Panics if array shape does not conform with pencil distribution
-fn check_shape<A, S, const N: usize>(
-    data: &ndarray::ArrayBase<S, ndarray::Dim<[usize; N]>>,
-    shape: [usize; N],
-) where
-    S: ndarray::Data<Elem = A>,
-    ndarray::Dim<[usize; N]>: ndarray::Dimension,
-{
-    assert!(
-        !(data.shape() != shape),
-        "Shape mismatch, got {:?} expected {:?}.",
-        data.shape(),
-        shape
-    );
 }

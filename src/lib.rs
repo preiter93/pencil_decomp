@@ -8,9 +8,15 @@
 //! ## Notes
 //! Work in progress...
 #![warn(clippy::pedantic)]
+#![warn(missing_docs)]
+#[macro_use]
+mod internal_macros;
+
 pub mod dist;
 pub mod global;
 pub mod pencil;
 pub use pencil::Pencil;
 pub mod decomp3;
 pub use decomp3::Decomp3;
+pub mod decomp2;
+pub use decomp2::Decomp2;

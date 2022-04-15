@@ -62,8 +62,8 @@ pub fn transpose_x_to_y<S1, S2, T>(
     assert_eq!(rcv.shape(), y_pencil.shape());
 
     // send & receive buffer
-    let mut send = vec![T::zero(); x_pencil.length()];
-    let mut recv = vec![T::zero(); y_pencil.length()];
+    let mut send = vec![T::zero(); x_pencil.len()];
+    let mut recv = vec![T::zero(); y_pencil.len()];
     split_xy(snd, &mut send);
 
     let (send_counts, send_displs) = send_counts_all_to_all(x_pencil, y_pencil);

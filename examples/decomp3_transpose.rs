@@ -1,4 +1,4 @@
-//! cargo mpirun --np 4 --example decomp3_transpose
+//! cargo mpirun --np 6 --example decomp3_transpose
 use mpi::topology::Communicator;
 use ndarray::Array3;
 use pencil_decomp::{Decomp3, Pencil};
